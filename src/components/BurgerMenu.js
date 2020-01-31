@@ -5,10 +5,12 @@ import { useTrail, animated } from 'react-spring';
 
 const StyledMenu = styled.div`
     width: 100%;
-    height: 80vh;
+    padding: 20vw 0;
     display: flex;
     flex-direction: column;
-    margin-top: 15vh;
+    justify-content: space-around; /* align items in Main Axis */
+    text-align: center;
+    flex: 1;
 `;
 const StyledLink = styled(Link)`
     text-transform: capitalize;
@@ -27,9 +29,8 @@ const BurgerMenu = ({ open }) => {
     const trail = useTrail(routes.length, {
         config,
         opacity: open ? 1 : 0,
-        y: open ? 0 : 20,
-        height: open ? 80 : 0,
-        from: { opacity: 0, y: 20, height: 0 }
+        transform: open ? 'translateY(0)' : 'translateY(-10%)',
+        from: { opacity: 0, transform: 'translateY(-10%)' }
     });
     return (
         <StyledMenu>
