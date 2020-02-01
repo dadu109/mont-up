@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { animated } from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 import logo from '../assets/logo.svg';
 import Burger from './Burger';
 import BurgerMenu from './BurgerMenu';
@@ -23,21 +23,27 @@ const StyledNavigation = styled.nav`
     justify-content: space-between;
     align-items: center;
 `;
-const Children = styled.div`
+const Children = styled(animated.div)`
     height: 100%;
 `;
-const Title = styled.h1`
+const Title = styled(animated.h1)`
     font-weight: bold;
     font-size: 36px;
-    line-height: 18px;
-    color: #768288;
+    line-height: 28px;
+    color: ${(props) => (props.primary ? '#B8CA1F' : '#768288')};
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
     margin: 5vw 0 15vw 0;
 `;
 
-const Container = ({ children, title }) => {
+const Container = ({ children, title, primary }) => {
     const [isBurgerOpen, setBurger] = useState(false);
+
+    const Animation = useSpring({
+        opacity: 1,
+        transform: 'translateX(0)',
+        from: { opacity: 0, transform: 'translateX(-10%)' }
+    });
 
     return (
         <StyledContainer>
@@ -51,8 +57,10 @@ const Container = ({ children, title }) => {
                 <BurgerMenu open={isBurgerOpen} />
             ) : (
                 <div>
-                    <Title>{title}</Title>
-                    <Children>{children}</Children>
+                    <Title primary={primary} style={Animation}>
+                        {title}
+                    </Title>
+                    <Children style={Animation}>{children}</Children>
                 </div>
             )}
         </StyledContainer>
