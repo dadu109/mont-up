@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../components/Container';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Form from '../components/Form';
 
 const Kontakt = () => {

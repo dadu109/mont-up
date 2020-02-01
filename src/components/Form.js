@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import Input from './Input';
 import Button from './Button';
 import styled from 'styled-components';
-import axios from 'axios';
-
-const API_PATH = 'http://localhost:3000/index.php';
 
 const StyldeForm = styled.form`
     text-align: center;
@@ -25,18 +22,6 @@ const Form = () => {
 
     const onSend = (e) => {
         e.preventDefault();
-        axios({
-            method: 'post',
-            url: `${API_PATH}`,
-            headers: { 'content-type': 'application/json' },
-            data: formState
-        })
-            .then((result) => {
-                updateFormState({ ...formState, mailSent: result.data.sent });
-            })
-            .catch((error) =>
-                updateFormState({ ...formState, error: error.message })
-            );
     };
 
     return (
