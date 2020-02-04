@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Input from './Input';
 import Button from './Button';
 import styled from 'styled-components';
+import axios from 'axios';
+import * as firebase from 'firebase/app';
+import { auth, functions } from '../firebase';
 
 const StyldeForm = styled.form`
     text-align: center;
@@ -9,6 +12,8 @@ const StyldeForm = styled.form`
         margin-top: 50px;
     }
 `;
+
+const url = 'https://us-central1-mont-up.cloudfunctions.net/sendMail';
 
 const Form = () => {
     const [formState, updateFormState] = useState({
@@ -20,12 +25,30 @@ const Form = () => {
         error: null
     });
 
-    const onSend = (e) => {
+    const sendEmail = (e) => {
         e.preventDefault();
+        axios
+            .post(
+                url,
+                { ...formState, time: Date.now() },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Set-Cookie': 'HttpOnly;Secure;SameSite=Strict',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }
+            )
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
-        <StyldeForm onSubmit={onSend}>
+        <StyldeForm onSubmit={(e) => sendEmail(e)}>
             <Input
                 onChange={(e) => {
                     updateFormState({ ...formState, iin: e.target.value });
