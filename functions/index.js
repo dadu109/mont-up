@@ -33,7 +33,7 @@ module.exports.sendMail = functions.https.onRequest((req, res) => {
             if (erro) {
                 return res.send(erro.toString());
             }
-            return res.send(req.body);
+            return res.send({ mailSent: true });
         });
     });
 });

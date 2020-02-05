@@ -3,13 +3,11 @@ import Input from './Input';
 import Button from './Button';
 import styled from 'styled-components';
 import axios from 'axios';
-import * as firebase from 'firebase/app';
-import { auth, functions } from '../firebase';
 
-const StyldeForm = styled.form`
+const StyledForm = styled.form`
     text-align: center;
     button {
-        margin-top: 50px;
+        margin-top: 70px;
     }
 `;
 
@@ -40,15 +38,15 @@ const Form = () => {
                 }
             )
             .then((res) => {
-                console.log(res);
+                updateFormState({ ...formState, mailSent: res.data.mailSent });
             })
             .catch((error) => {
-                console.log(error);
+                updateFormState({ ...formState, error });
             });
     };
 
     return (
-        <StyldeForm onSubmit={(e) => sendEmail(e)}>
+        <StyledForm onSubmit={(e) => sendEmail(e)}>
             <Input
                 onChange={(e) => {
                     updateFormState({ ...formState, iin: e.target.value });
@@ -89,7 +87,7 @@ const Form = () => {
             </Input>
             <Button type='submit'>Wyślij</Button>
             {formState.mailSent && <div>Thank you for contcting us.</div>}
-        </StyldeForm>
+        </StyledForm>
     );
 };
 

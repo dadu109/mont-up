@@ -6,7 +6,7 @@ const Header = styled(animated.div)`
     color: #fff;
     background-color: #768288;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 13px 0;
     font-weight: 900;
     font-size: 18px;
