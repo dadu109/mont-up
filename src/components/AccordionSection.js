@@ -12,6 +12,11 @@ const Header = styled(animated.div)`
   font-size: 18px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
+  @media (min-width: 1440px) {
+    width: 50%;
+    padding: 26px 10px;
+    font-size: 26px;
+  }
 `;
 
 const trailConfig = {

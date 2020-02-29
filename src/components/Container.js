@@ -28,6 +28,7 @@ const StyledLogo = styled.img`
   width: auto;
   @media (min-width: 1440px) {
     width: ${(props) => (props.bigLogo ? '600px' : 'auto')};
+    padding-top: 20px;
   }
 `;
 
@@ -47,6 +48,7 @@ const StyledNavigation = styled.nav`
   align-items: center;
   @media (min-width: 1440px) {
     align-items: flex-start;
+    padding: 0;
   }
 `;
 
@@ -65,6 +67,10 @@ const Title = styled(animated.h1)`
   text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin: 5vw 0 15vw 0;
+  @media (min-width: 1440px) {
+    margin: 7vh 0 8vh 0;
+    font-size: 72px;
+  }
 `;
 
 const DesktopNav = styled.div`

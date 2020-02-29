@@ -41,6 +41,12 @@ const StyledLink = styled(Link)`
   :hover {
     color: #b8ca1f;
   }
+  @media (min-width: 1440px) {
+    font-size: 24px;
+    span {
+      padding: 20px;
+    }
+  }
 `;
 const ClearLink = styled(Link)`
   color: #fff;
@@ -55,6 +61,10 @@ const StyledTitle = styled.div`
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin: 15px 0;
+  @media (min-width: 1440px) {
+    margin: 0 0 80px;
+    font-size: 72px;
+  }
 `;
 
 const StyledThumb = styled.img`
